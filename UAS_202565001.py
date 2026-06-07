@@ -10,7 +10,7 @@ class Ebook():
         self.load()
     
     def __str__(self):
-        return f"kode: {self.kode}, \njudul: {self.judul}, \npenulis: {self.penulis}, \nkategori: {self.kategori}, \ntahun: {self.tahun}, \nstok: {self.stok}\n"
+        return f"kode: {self.kode}, \njudul: {self.judul}, \npenulis: {self.penulis}, \nkategori: {self.kategori}, \ntahun: {self.tahun}, \nstok: {self.stok}"
     
     def get_data(self):
         return self.data
@@ -25,7 +25,8 @@ class Ebook():
 
 class Perpus():
     def __init__(self):
-        self.buku_buku = []
+        self.daftar_buku = []
+        self.kategori = None
         self.load_json()
         self.main()
         
@@ -38,7 +39,7 @@ class Perpus():
         with open("data.json", "r") as f:
             data = json.load(f)
         for i in data:
-            self.buku_buku.append(Ebook(i))
+            self.daftar_buku.append(Ebook(i))
             
     def dump_json():
         pass
@@ -61,31 +62,76 @@ class Perpus():
         
     def cli(self):
         def command_0():
-            pass
-
+            print("-------------------")
+            print("Masukan data buku")
+            print("-------------------\n")
+            while True:
+                try:
+                    kode = input("kode buku: ")
+                    judul = input("judul buku: ")
+                    penulis = input("penulis buku: ")
+                    kategori = input("kategori buku: ")
+                    tahun = int(input("tahun buku: "))
+                    stok = int(input("stok buku: "))
+                    print()
+                except ValueError:
+                    print("\n!!!Tahun dan stok harus berbentuk angka!!!")
+                    continue
+                
+                buku = {"kode": kode,"judul": judul,"penulis": penulis,"kategori": kategori,"tahun": tahun,"stok": stok}
+                
+                print("-------------------")    
+                print("Apakah data yang di masukan sudah benar?")
+                print("-------------------")
+                buku = Ebook(buku)
+                print(buku)
+                print("-------------------")
+                
+                hasil = False
+                while True:
+                    confirmasi = str(input("Y/N: ")).lower()
+                    if confirmasi == "y" or confirmasi == "yes":
+                        hasil = True
+                        break
+                    elif confirmasi == "n" or confirmasi == "no":
+                        break
+                print("-------------------")
+                
+                if hasil:
+                    break
+            self.daftar_buku.append(buku)
+            print("\n-------------------")
+            print("Berhasil menambahkan ke daftar buku")   
+            print("-------------------\n")
+            
         def command_1():
             print("****************************")
-            for i in self.buku_buku:
+            for i in self.daftar_buku:
+                print("-------------------")
                 print(i)
+                print("-------------------")
+                print()
             print("****************************")
 
         def command_2():
             print("****************************")
             buku_dicari = input("Masukan nama buku: ")
             hasil = None
-            for buku in self.buku_buku:
+            for buku in self.daftar_buku:
                 if buku.judul.lower() == buku_dicari.lower():
                     hasil = buku
             
             if hasil:
                 print("Hasil pencarian: ")
                 print()
+                print("-------------------")
                 print(hasil)
+                print("-------------------")
+
+                
             else:
-                print("Buku tidak di temukan")
+                print("\n---Buku tidak di temukan---")
             print("****************************")
-            
-                    
             
         def command_3():
             pass
