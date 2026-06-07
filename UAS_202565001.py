@@ -62,10 +62,31 @@ class Perpus():
     def cli(self):
         def command_0():
             pass
+
         def command_1():
-            pass
+            print("****************************")
+            for i in self.buku_buku:
+                print(i)
+            print("****************************")
+
         def command_2():
-            pass
+            print("****************************")
+            buku_dicari = input("Masukan nama buku: ")
+            hasil = None
+            for buku in self.buku_buku:
+                if buku.judul.lower() == buku_dicari.lower():
+                    hasil = buku
+            
+            if hasil:
+                print("Hasil pencarian: ")
+                print()
+                print(hasil)
+            else:
+                print("Buku tidak di temukan")
+            print("****************************")
+            
+                    
+            
         def command_3():
             pass
         def command_4():
@@ -86,28 +107,25 @@ class Perpus():
         
         match command:
             case "0":
-                pass
+                command_0()
             case "1":
-                print("****************************")
-                for i in self.buku_buku:
-                    print(i)
-                print("****************************")
+                command_1()
             case "2":
-                pass
+                command_2()
             case "3":
-                pass
+                command_3()
             case "4":
-                pass
+                command_4()
             case "5":
-                pass
+                command_5()
             case "6":
-                pass
+                command_6()
             case "7":
-                pass
+                command_7()
             case "8":
-                pass
+                command_8()
             case "9":
-                pass
+                command_9()
         
 
 if __name__ == "__main__":
