@@ -30,10 +30,6 @@ class Perpus():
         self.load_json()
         self.main()
         
-    def main(self):
-        self.cmd_list()
-        while True:
-            self.cli()
             
     def load_json(self):
         with open("data.json", "r") as f:
@@ -43,6 +39,19 @@ class Perpus():
             
     def dump_json():
         pass
+    
+    def update_kode_daftar_buku(self):
+        counter = 1
+        for buku in self.daftar_buku:
+            kode = f"BK{counter:03d}"
+            buku.kode = kode
+            counter += 1
+        
+    def main(self):
+        self.cmd_list()
+        while True:
+            self.update_daftar_buku()
+            self.cli()
     
     def cmd_list(self):
         print("****************************")
@@ -67,7 +76,6 @@ class Perpus():
             print("-------------------\n")
             while True:
                 try:
-                    kode = input("kode buku: ")
                     judul = input("judul buku: ")
                     penulis = input("penulis buku: ")
                     kategori = input("kategori buku: ")
@@ -78,7 +86,7 @@ class Perpus():
                     print("\n!!!Tahun dan stok harus berbentuk angka!!!")
                     continue
                 
-                buku = {"kode": kode,"judul": judul,"penulis": penulis,"kategori": kategori,"tahun": tahun,"stok": stok}
+                buku = {"kode": None,"judul": judul,"penulis": penulis,"kategori": kategori,"tahun": tahun,"stok": stok}
                 
                 print("-------------------")    
                 print("Apakah data yang di masukan sudah benar?")
