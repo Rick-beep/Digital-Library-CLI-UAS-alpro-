@@ -26,10 +26,10 @@ class Ebook():
 class Perpus():
     def __init__(self):
         self.daftar_buku = []
-        self.kategori = None
         self.load_json()
+        self.kategori_tetap = ("Pemrograman", "Jaringan", "Basis Data", "AI")
+        self.kategori = None
         self.main()
-        
             
     def load_json(self):
         with open("data.json", "r") as f:
@@ -50,7 +50,7 @@ class Perpus():
     def main(self):
         self.cmd_list()
         while True:
-            self.update_daftar_buku()
+            self.update_kode_daftar_buku()
             self.cli()
     
     def cmd_list(self):
@@ -88,11 +88,10 @@ class Perpus():
                 
                 buku = {"kode": None,"judul": judul,"penulis": penulis,"kategori": kategori,"tahun": tahun,"stok": stok}
                 
-                print("-------------------")    
-                print("Apakah data yang di masukan sudah benar?")
-                print("-------------------")
                 buku = Ebook(buku)
                 print(buku)
+                print("-------------------")    
+                print("Apakah data yang di masukan sudah benar?")
                 print("-------------------")
                 
                 hasil = False
@@ -108,17 +107,20 @@ class Perpus():
                 if hasil:
                     break
             self.daftar_buku.append(buku)
-            print("\n-------------------")
-            print("Berhasil menambahkan ke daftar buku")   
-            print("-------------------\n")
+            print("-------------------")
+            print(">>> Berhasil menambahkan buku ke daftar buku <<<")   
+            print("-------------------")
+            print("****************************")
+            
             
         def command_1():
             print("****************************")
             for i in self.daftar_buku:
                 print("-------------------")
-                print(i)
+                print("Judul: " + i.judul)
+                print("Penulis: " + i.penulis)
+                print("kategori: " + i.kategori)
                 print("-------------------")
-                print()
             print("****************************")
 
         def command_2():
@@ -135,18 +137,97 @@ class Perpus():
                 print("-------------------")
                 print(hasil)
                 print("-------------------")
-
                 
             else:
-                print("\n---Buku tidak di temukan---")
+                print("\n>>> Buku tidak di temukan <<<")
             print("****************************")
             
         def command_3():
-            pass
+            self.update_kode_daftar_buku()
+            print("-------------------")
+            print(f"{len(self.daftar_buku)} buku telah di urutkan")
+            print("-------------------")
+            
         def command_4():
-            pass        
+            print("-------------------")    
+            buku_dicari = input("Masukan nama buku: ")
+            print("-------------------")    
+            
+            hasil = None
+            for buku in self.daftar_buku:
+                if buku.judul.lower() == buku_dicari.lower():
+                    hasil = buku
+            
+            if hasil:
+                print("-------------------")
+                print(hasil)
+                print("-------------------")
+                
+                meminjam = False
+                while True:
+                    print("-------------------")    
+                    print("Apakah data yang di masukan sudah benar?")
+                    print("-------------------")
+                    confirmasi = str(input("Y/N: ")).lower()
+                    if confirmasi == "y" or confirmasi == "yes":
+                        meminjam = True
+                        break
+                    elif confirmasi == "n" or confirmasi == "no":
+                        break
+                
+                print("-------------------")
+                if meminjam and hasil.stok > 0:
+                    hasil.stok -= 1
+                    print(">>> Berhasil meminjam buku <<<")
+                    print(f"stok: {hasil.stok + 1} --> {hasil.stok}")
+                elif meminjam and hasil.stok <= 0:
+                    print(f'>>> Stok buku "{hasil.judul}" telah habis <<<')
+                else:
+                    print(">>> Peminjaman di batalkan <<<")
+                print("-------------------")    
+            else:
+ 
+                print(">>> Buku tidak di temukan <<<")
+            print("****************************")
+            
         def command_5():
-            pass        
+            print("-------------------")    
+            buku_dicari = input("Masukan nama buku: ")
+            print("-------------------")    
+            
+            hasil = None
+            for buku in self.daftar_buku:
+                if buku.judul.lower() == buku_dicari.lower():
+                    hasil = buku
+            
+            if hasil:
+                print("-------------------")
+                print(hasil)
+                print("-------------------")
+                
+                kembalikan = False
+                while True:
+                    print("-------------------")    
+                    print("Apakah data yang di masukan sudah benar?")
+                    print("-------------------")
+                    confirmasi = str(input("Y/N: ")).lower()
+                    if confirmasi == "y" or confirmasi == "yes":
+                        kembalikan = True
+                        break
+                    elif confirmasi == "n" or confirmasi == "no":
+                        break
+                
+                print("-------------------")
+                if kembalikan:
+                    hasil.stok += 1
+                    print(">>> Berhasil kembalikan buku <<<")
+                    print(f"stok: {hasil.stok - 1} --> {hasil.stok}")
+                else:
+                    print(">>> Pengembalian di batalkan <<<")
+                print("-------------------")    
+            else:
+                print(">>> Buku tidak di temukan <<<")
+            print("****************************")     
         def command_6():
             pass        
         def command_7():
@@ -186,6 +267,7 @@ if __name__ == "__main__":
     Perpus()
 
 
+# TODO: BUAT SET untuk Menampilkan kategori unik
 {
 "kode": "BK001",
 "judul": "Python Dasar",
