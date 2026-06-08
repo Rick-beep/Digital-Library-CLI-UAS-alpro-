@@ -34,13 +34,33 @@ class Perpus():
         self.main()
             
     def load_json(self):
-        with open("data.json", "r") as f:
-            data = json.load(f)
-        for i in data:
-            self.daftar_buku.append(Ebook(i))
+        try:
+            with open("data.json", "r") as f:
+                data = json.load(f)
+            for i in data:
+                self.daftar_buku.append(Ebook(i))
+            print("-------------------")
+            print(">>> Berhasil membaca file <<<")
+            print("-------------------")
+        except:
+            print("-------------------")
+            print(">>> Gagal membaca file <<<")
+            print("-------------------")
             
-    def dump_json():
-        pass
+    def dump_json(self):
+        files = []
+        for i in self.daftar_buku:
+            files.append(i.get_data())
+        try:
+            with open("data.json", "w") as f:
+                json.dump(files, f)
+            print("-------------------")
+            print(">>> Berhasil simpan file <<<")
+            print("-------------------")
+        except:
+            print("-------------------")
+            print(">>> Gagal simpan file <<<")
+            print("-------------------")
     
     def update_kode_daftar_buku(self):
         counter = 1
@@ -119,9 +139,7 @@ class Perpus():
             print("****************************")
             for i in self.daftar_buku:
                 print("-------------------")
-                print("Judul: " + i.judul)
-                print("Penulis: " + i.penulis)
-                print("kategori: " + i.kategori)
+                print(i)
                 print("-------------------")
             print("****************************")
 
@@ -336,9 +354,11 @@ class Perpus():
                     break
                 
         def command_7():
-            pass        
+            self.dump_json()
+                
         def command_8():
-            pass
+            self.load_json()
+            
         def command_9():
             pass 
         
