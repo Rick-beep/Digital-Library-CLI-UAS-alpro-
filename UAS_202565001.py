@@ -75,17 +75,14 @@ class Perpus():
             print(">>> Gagal simpan file <<<")
             print("-------------------")
     
-    def update_kode_daftar_buku(self):
-        counter = 1
-        for buku in self.daftar_buku:
-            kode = f"BK{counter:03d}"
-            buku.kode = kode
-            counter += 1
+    def generator_kode_buku(self):
+        total = len(self.daftar_buku) + 1
+        kode_buku = f"BK{total:03d}"
+        return kode_buku
         
     def main(self):
         self.menu()
         while True:
-            self.update_kode_daftar_buku()
             if self.cli():
                 break
 
@@ -109,12 +106,20 @@ class Perpus():
         def command_0():
             print("-------------------")
             print("Masukan data buku")
+            print("Biarkan kosong untuk kembali ke menu utama")
+            
             print("-------------------\n")
             while True:
                 try:
                     judul = input("judul buku: ")
                     penulis = input("penulis buku: ")
                     kategori = input("kategori buku: ")
+                    
+                    if judul == "" and penulis == "" and kategori == "":
+                        print("-------------------")    
+                        print(">>> Kembali ke menu utama <<<")
+                        print("-------------------")
+                        return
                     tahun = int(input("tahun buku: "))
                     stok = int(input("stok buku: "))
                     print()
@@ -122,7 +127,7 @@ class Perpus():
                     print("\n>>> Tahun dan stok harus berbentuk angka <<<")
                     continue
                 
-                buku = {"kode": None,"judul": judul,"penulis": penulis,"kategori": kategori,"tahun": tahun,"stok": stok}
+                buku = {"kode": self.generator_kode_buku(), "judul": judul,"penulis": penulis,"kategori": kategori,"tahun": tahun,"stok": stok}
                 
                 buku = Ebook(buku)
                 print(buku)
@@ -176,10 +181,63 @@ class Perpus():
             print("****************************")
             
         def command_3():
-            self.update_kode_daftar_buku()
-            print("-------------------")
-            print(f"{len(self.daftar_buku)} buku telah di urutkan")
-            print("-------------------")
+            def menu():
+                print("****************************")
+                print("URUTKAN BERDASARKAN")
+                print("\nMenu: ")
+                print("0. Judul")
+                print("1. Tahun terbit")
+                print("2. Stok")
+                print("****************************")
+                
+            def statistik_cli():
+                def command_0():
+                    self.daftar_buku = sorted(self.daftar_buku, key=lambda buku: buku.judul)
+                    print("-------------------")
+                    print(f"{len(self.daftar_buku)} buku telah di urutkan berdasarkan judul")
+                    print("-------------------") 
+                    return True
+                    
+
+                def command_1():
+                    self.daftar_buku = sorted(self.daftar_buku, key=lambda buku: buku.tahun)
+                    print("-------------------")
+                    print(f"{len(self.daftar_buku)} buku telah di urutkan tahun")
+                    print("-------------------")  
+                    return True
+                    
+                    
+                def command_2():
+                    self.daftar_buku = sorted(self.daftar_buku, key=lambda buku: buku.stok)
+                    print("-------------------")
+                    print(f"{len(self.daftar_buku)} buku telah di urutkan stok")
+                    print("-------------------")
+                    return True
+                    
+                    
+                def command_3():
+                    print("-------------------")
+                    print(">>> Balik ke menu utama <<<")
+                    print("-------------------")
+                    return True
+                    
+
+                command = input("Command: ")
+                print()
+                
+                match command:
+                    case "0":
+                        return command_0()
+                    case "1":
+                        return command_1()
+                    case "2":
+                        return command_2()
+                    case "3":
+                        return command_3()
+            menu()
+            while True:
+                if statistik_cli():
+                    break
             
         def command_4():
             print("-------------------")    
