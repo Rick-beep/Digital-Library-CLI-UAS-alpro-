@@ -1,6 +1,8 @@
 '''
 Christian Gilbert Rusianto (202565001)
+
 https://github.com/Rick-beep
+https://github.com/Rick-beep/Digital-Library-CLI-UAS-alpro-
 '''
 
 import json
@@ -48,12 +50,13 @@ class Perpus():
             counter += 1
         
     def main(self):
-        self.cmd_list()
+        self.menu()
         while True:
             self.update_kode_daftar_buku()
             self.cli()
+            
     
-    def cmd_list(self):
+    def menu(self):
         print("****************************")
         print("SISTEM PERPUSTAKAAN DIGITAL")
         print("\nMenu: ")
@@ -111,8 +114,7 @@ class Perpus():
             print(">>> Berhasil menambahkan buku ke daftar buku <<<")   
             print("-------------------")
             print("****************************")
-            
-            
+                
         def command_1():
             print("****************************")
             for i in self.daftar_buku:
@@ -228,8 +230,111 @@ class Perpus():
             else:
                 print(">>> Buku tidak di temukan <<<")
             print("****************************")     
+        
         def command_6():
-            pass        
+            semua_penulis = []
+            semua_kategori = []
+            total_jenis_buku = 0
+            stok_ada = []
+            stok_habis = []
+            total_stok = 0
+            
+            for buku in self.daftar_buku:
+                semua_penulis.append(buku.penulis)
+                semua_kategori.append(buku.kategori)
+                
+                total_stok += int(buku.stok)
+                total_jenis_buku += 1
+                
+                if buku.stok > 0:
+                    stok_ada.append(buku)
+                else:
+                    stok_habis.append(buku)
+            
+            def menu():
+                print("****************************")
+                print("MENU STATISTIK")
+                print("\nMenu: ")
+                print("0. List semua penulis")
+                print("1. List semua kategori")
+                print("2. Total jenis buku")
+                print("3. Buku yang dalam stok")
+                print("4. Buku yang tidak dalam stok")
+                print("5. Total stok semua buku")
+                print("6. Keluar")
+                print("****************************")
+            
+            def statistik_cli():
+                def command_0():
+                    print("-------------------")
+                    for penulis in sorted(set(semua_penulis)):
+                        print(penulis)
+                    print("-------------------")    
+
+                def command_1():
+                    print("-------------------")
+                    for kategori in sorted(set(semua_kategori)):
+                        print(kategori)
+                    print("-------------------")  
+                    
+                def command_2():
+                    print("-------------------")
+                    print(f"Total jenis buku: {total_jenis_buku}")
+                    print("-------------------")
+                    
+                def command_3():
+                    print("-------------------")
+                    if stok_ada:
+                        print(">>> Stock buku yang ada <<<")
+                        for buku in stok_ada:
+                            print(f"{buku.judul}: {buku.stok}")
+                        print("-------------------")  
+                    else:
+                        print(">>> Semua stok buku habis")
+                def command_4():
+                    if stok_habis:
+                        print("-------------------")
+                        print(">>> Stock buku yang habis <<<")
+                        for buku in stok_ada:
+                            print(f"{buku.judul}: {buku.stok}")
+                        print("-------------------")  
+                    else:
+                        print(">>> Tidak ada stock buku yang habis <<<")
+
+                def command_5():
+                    print("-------------------")
+                    print(f"Total stok semua buku: {total_stok}")
+                    print("-------------------")
+                def command_6():
+                    print("-------------------")
+                    return True
+                    
+
+                command = input("Command: ")
+                print()
+                
+                match command:
+                    case "0":
+                        command_0()
+                    case "1":
+                        command_1()
+                    case "2":
+                        command_2()
+                    case "3":
+                        command_3()
+                    case "4":
+                        command_4()
+                    case "5":
+                        command_5()
+                    case "6":
+                        return command_6()
+                        
+                    
+            menu()
+            while True:
+                if statistik_cli():
+                    break
+                
         def command_7():
             pass        
         def command_8():
@@ -262,7 +367,6 @@ class Perpus():
             case "9":
                 command_9()
         
-
 if __name__ == "__main__":
     Perpus()
 
