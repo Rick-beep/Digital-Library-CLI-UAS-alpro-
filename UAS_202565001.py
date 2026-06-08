@@ -4,17 +4,6 @@ Christian Gilbert Rusianto (202565001)
 https://github.com/Rick-beep
 https://github.com/Rick-beep/Digital-Library-CLI-UAS-alpro-
 
-----MENU----
-0. Tambah Buku
-1. Tampilkan Semua Buku
-2. Cari Buku
-3. Urutkan Buku
-4. Pinjam Buku
-5. Kembalikan Buku
-6. Statistik Perpustakaan
-7. Simpan Data
-8. Baca Data
-9. Keluar
 '''
 
 import json
@@ -103,7 +92,7 @@ class Perpus():
         print("****************************")
         
     def cli(self):
-        def command_0():
+        def tambah_buku():
             print("-------------------")
             print("Masukan data buku")
             print("Biarkan kosong untuk kembali ke menu utama")
@@ -153,7 +142,7 @@ class Perpus():
             print("-------------------")
             print("****************************")
                 
-        def command_1():
+        def tampilkan_buku():
             print("****************************")
             for i in self.daftar_buku:
                 print("-------------------")
@@ -161,7 +150,7 @@ class Perpus():
                 print("-------------------")
             print("****************************")
 
-        def command_2():
+        def cari_buku():
             print("****************************")
             buku_dicari = input("Masukan nama buku: ")
             hasil = None
@@ -180,7 +169,7 @@ class Perpus():
                 print("\n>>> Buku tidak di temukan <<<")
             print("****************************")
             
-        def command_3():
+        def urutkan_buku():
             def menu():
                 print("****************************")
                 print("URUTKAN BERDASARKAN")
@@ -239,7 +228,7 @@ class Perpus():
                 if statistik_cli():
                     break
             
-        def command_4():
+        def pinjam_buku():
             print("-------------------")    
             buku_dicari = input("Masukan nama buku: ")
             print("-------------------")    
@@ -281,7 +270,7 @@ class Perpus():
                 print(">>> Buku tidak di temukan <<<")
             print("****************************")
             
-        def command_5():
+        def kembalikan_buku():
             print("-------------------")    
             buku_dicari = input("Masukan nama buku: ")
             print("-------------------")    
@@ -320,7 +309,7 @@ class Perpus():
                 print(">>> Buku tidak di temukan <<<")
             print("****************************")     
         
-        def command_6():
+        def statistik_perpus():
             semua_penulis = []
             semua_kategori = []
             total_jenis_buku = 0
@@ -425,13 +414,13 @@ class Perpus():
                 if statistik_cli():
                     break
                 
-        def command_7():
+        def simpan_data():
             self.dump_json()
                 
-        def command_8():
+        def baca_data():
             self.load_json()
             
-        def command_9():
+        def keluar():
             print("--------------------")
             print(">>> Terima kasih <<<")    
             print("--------------------")    
@@ -442,25 +431,111 @@ class Perpus():
         
         match command:
             case "0":
-                command_0()
+                tambah_buku()
             case "1":
-                command_1()
+                tampilkan_buku()
             case "2":
-                command_2()
+                cari_buku()
             case "3":
-                command_3()
+                urutkan_buku()
             case "4":
-                command_4()
+                pinjam_buku()
             case "5":
-                command_5()
+                kembalikan_buku()
             case "6":
-                command_6()
+                statistik_perpus()
             case "7":
-                command_7()
+                simpan_data()
             case "8":
-                command_8()
+                baca_data()
             case "9":
-                return command_9()
+                return keluar()
         
 if __name__ == "__main__":
     Perpus()
+    
+    
+
+#Ini adalah mock data JSON yang digunakan untuk menguji program ini:
+[
+    {
+        "judul": "Cloud Computing Essentials",
+        "kategori": "Teknologi",
+        "kode": "BK010",
+        "penulis": "Jaka",
+        "stok": 0,
+        "tahun": 2025
+    },
+    {
+        "judul": "Dasar-Dasar Keamanan Siber",
+        "kategori": "Keamanan",
+        "kode": "BK006",
+        "penulis": "Fani",
+        "stok": 0,
+        "tahun": 2025
+    },
+    {
+        "judul": "Kecerdasan Buatan Terapan",
+        "kategori": "AI",
+        "kode": "BK009",
+        "penulis": "Indah",
+        "stok": 2,
+        "tahun": 2026
+    },
+    {
+        "judul": "Data Science dengan R",
+        "kategori": "Data Science",
+        "kode": "BK002",
+        "penulis": "Budi",
+        "stok": 3,
+        "tahun": 2023
+    },
+    {
+        "judul": "Python Dasar",
+        "kategori": "Pemrograman",
+        "kode": "BK001",
+        "penulis": "Andi",
+        "stok": 5,
+        "tahun": 2024
+    },
+    {
+        "judul": "Belajar React Native",
+        "kategori": "Pemrograman",
+        "kode": "BK005",
+        "penulis": "Eka",
+        "stok": 6,
+        "tahun": 2024
+    },
+    {
+        "judul": "Manajemen Proyek IT",
+        "kategori": "Bisnis",
+        "kode": "BK008",
+        "penulis": "Hani",
+        "stok": 7,
+        "tahun": 2023
+    },
+    {
+        "judul": "Desain UI/UX Modern",
+        "kategori": "Desain",
+        "kode": "BK003",
+        "penulis": "Citra",
+        "stok": 8,
+        "tahun": 2025
+    },
+    {
+        "judul": "Pengembangan Web dengan PHP",
+        "kategori": "Pemrograman",
+        "kode": "BK007",
+        "penulis": "Gani",
+        "stok": 10,
+        "tahun": 2021
+    },
+    {
+        "judul": "Algoritma dan Struktur Data",
+        "kategori": "Ilmu Komputer",
+        "kode": "BK004",
+        "penulis": "Dedi",
+        "stok": 12,
+        "tahun": 2022
+    }
+]
