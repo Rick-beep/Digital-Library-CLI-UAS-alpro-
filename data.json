@@ -44,7 +44,7 @@
         "kategori": "Keamanan",
         "kode": "BK006",
         "penulis": "Fani",
-        "stok": 4,
+        "stok": 0,
         "tahun": 2025
     },
     {
@@ -76,7 +76,7 @@
         "kategori": "Teknologi",
         "kode": "BK010",
         "penulis": "Jaka",
-        "stok": 9,
+        "stok": 0,
         "tahun": 2025
     }
 ]

@@ -277,10 +277,10 @@ class Perpus():
                 total_stok += int(buku.stok)
                 total_jenis_buku += 1
                 
-                if buku.stok > 0:
-                    stok_ada.append(buku)
-                else:
+                if buku.stok <= 0:
                     stok_habis.append(buku)
+                else:
+                    stok_ada.append(buku)
             
             def menu():
                 print("****************************")
@@ -326,7 +326,7 @@ class Perpus():
                     if stok_habis:
                         print("-------------------")
                         print(">>> Stock buku yang habis <<<")
-                        for buku in stok_ada:
+                        for buku in stok_habis:
                             print(f"{buku.judul}: {buku.stok}")
                         print("-------------------")  
                     else:
@@ -338,6 +338,9 @@ class Perpus():
                     print("-------------------")
                 def command_6():
                     print("-------------------")
+                    print(">>> Balik ke menu utama <<<")
+                    print("-------------------")
+                    
                     return True
                     
 
