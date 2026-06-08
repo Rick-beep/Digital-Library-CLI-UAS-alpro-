@@ -1,82 +1,82 @@
 [
-  {
-    "kode": "BK001",
-    "judul": "Python Dasar",
-    "penulis": "Andi",
-    "kategori": "Pemrograman",
-    "tahun": 2024,
-    "stok": 5
-  },
-  {
-    "kode": "BK002",
-    "judul": "Data Science dengan R",
-    "penulis": "Budi",
-    "kategori": "Data Science",
-    "tahun": 2023,
-    "stok": 3
-  },
-  {
-    "kode": "BK003",
-    "judul": "Desain UI/UX Modern",
-    "penulis": "Citra",
-    "kategori": "Desain",
-    "tahun": 2025,
-    "stok": 8
-  },
-  {
-    "kode": "BK004",
-    "judul": "Algoritma dan Struktur Data",
-    "penulis": "Dedi",
-    "kategori": "Ilmu Komputer",
-    "tahun": 2022,
-    "stok": 12
-  },
-  {
-    "kode": "BK005",
-    "judul": "Belajar React Native",
-    "penulis": "Eka",
-    "kategori": "Pemrograman",
-    "tahun": 2024,
-    "stok": 6
-  },
-  {
-    "kode": "BK006",
-    "judul": "Dasar-Dasar Keamanan Siber",
-    "penulis": "Fani",
-    "kategori": "Keamanan",
-    "tahun": 2025,
-    "stok": 4
-  },
-  {
-    "kode": "BK007",
-    "judul": "Pengembangan Web dengan PHP",
-    "penulis": "Gani",
-    "kategori": "Pemrograman",
-    "tahun": 2021,
-    "stok": 10
-  },
-  {
-    "kode": "BK008",
-    "judul": "Manajemen Proyek IT",
-    "penulis": "Hani",
-    "kategori": "Bisnis",
-    "tahun": 2023,
-    "stok": 7
-  },
-  {
-    "kode": "BK009",
-    "judul": "Kecerdasan Buatan Terapan",
-    "penulis": "Indah",
-    "kategori": "AI",
-    "tahun": 2026,
-    "stok": 2
-  },
-  {
-    "kode": "BK010",
-    "judul": "Cloud Computing Essentials",
-    "penulis": "Jaka",
-    "kategori": "Teknologi",
-    "tahun": 2025,
-    "stok": 9
-  }
+    {
+        "judul": "Python Dasar",
+        "kategori": "Pemrograman",
+        "kode": "BK001",
+        "penulis": "Andi",
+        "stok": 5,
+        "tahun": 2024
+    },
+    {
+        "judul": "Data Science dengan R",
+        "kategori": "Data Science",
+        "kode": "BK002",
+        "penulis": "Budi",
+        "stok": 3,
+        "tahun": 2023
+    },
+    {
+        "judul": "Desain UI/UX Modern",
+        "kategori": "Desain",
+        "kode": "BK003",
+        "penulis": "Citra",
+        "stok": 8,
+        "tahun": 2025
+    },
+    {
+        "judul": "Algoritma dan Struktur Data",
+        "kategori": "Ilmu Komputer",
+        "kode": "BK004",
+        "penulis": "Dedi",
+        "stok": 12,
+        "tahun": 2022
+    },
+    {
+        "judul": "Belajar React Native",
+        "kategori": "Pemrograman",
+        "kode": "BK005",
+        "penulis": "Eka",
+        "stok": 6,
+        "tahun": 2024
+    },
+    {
+        "judul": "Dasar-Dasar Keamanan Siber",
+        "kategori": "Keamanan",
+        "kode": "BK006",
+        "penulis": "Fani",
+        "stok": 4,
+        "tahun": 2025
+    },
+    {
+        "judul": "Pengembangan Web dengan PHP",
+        "kategori": "Pemrograman",
+        "kode": "BK007",
+        "penulis": "Gani",
+        "stok": 10,
+        "tahun": 2021
+    },
+    {
+        "judul": "Manajemen Proyek IT",
+        "kategori": "Bisnis",
+        "kode": "BK008",
+        "penulis": "Hani",
+        "stok": 7,
+        "tahun": 2023
+    },
+    {
+        "judul": "Kecerdasan Buatan Terapan",
+        "kategori": "AI",
+        "kode": "BK009",
+        "penulis": "Indah",
+        "stok": 2,
+        "tahun": 2026
+    },
+    {
+        "judul": "Cloud Computing Essentials",
+        "kategori": "Teknologi",
+        "kode": "BK010",
+        "penulis": "Jaka",
+        "stok": 9,
+        "tahun": 2025
+    }
 ]

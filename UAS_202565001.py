@@ -3,6 +3,18 @@ Christian Gilbert Rusianto (202565001)
 
 https://github.com/Rick-beep
 https://github.com/Rick-beep/Digital-Library-CLI-UAS-alpro-
+
+----MENU----
+0. Tambah Buku
+1. Tampilkan Semua Buku
+2. Cari Buku
+3. Urutkan Buku
+4. Pinjam Buku
+5. Kembalikan Buku
+6. Statistik Perpustakaan
+7. Simpan Data
+8. Baca Data
+9. Keluar
 '''
 
 import json
@@ -34,6 +46,7 @@ class Perpus():
         self.main()
             
     def load_json(self):
+        self.daftar_buku = []
         try:
             with open("data.json", "r") as f:
                 data = json.load(f)
@@ -53,7 +66,7 @@ class Perpus():
             files.append(i.get_data())
         try:
             with open("data.json", "w") as f:
-                json.dump(files, f)
+                json.dump(files, f, indent=4, sort_keys=True)
             print("-------------------")
             print(">>> Berhasil simpan file <<<")
             print("-------------------")
@@ -73,9 +86,9 @@ class Perpus():
         self.menu()
         while True:
             self.update_kode_daftar_buku()
-            self.cli()
-            
-    
+            if self.cli():
+                break
+
     def menu(self):
         print("****************************")
         print("SISTEM PERPUSTAKAAN DIGITAL")
@@ -106,7 +119,7 @@ class Perpus():
                     stok = int(input("stok buku: "))
                     print()
                 except ValueError:
-                    print("\n!!!Tahun dan stok harus berbentuk angka!!!")
+                    print("\n>>> Tahun dan stok harus berbentuk angka <<<")
                     continue
                 
                 buku = {"kode": None,"judul": judul,"penulis": penulis,"kategori": kategori,"tahun": tahun,"stok": stok}
@@ -346,8 +359,6 @@ class Perpus():
                         command_5()
                     case "6":
                         return command_6()
-                        
-                    
             menu()
             while True:
                 if statistik_cli():
@@ -360,7 +371,10 @@ class Perpus():
             self.load_json()
             
         def command_9():
-            pass 
+            print("--------------------")
+            print(">>> Terima kasih <<<")    
+            print("--------------------")    
+            return True
         
         command = input("Command: ")
         print()
@@ -385,18 +399,7 @@ class Perpus():
             case "8":
                 command_8()
             case "9":
-                command_9()
+                return command_9()
         
 if __name__ == "__main__":
     Perpus()
-
-
-# TODO: BUAT SET untuk Menampilkan kategori unik
-{
-"kode": "BK001",
-"judul": "Python Dasar",
-"penulis": "Andi",
-"kategori": "Pemrograman",
-"tahun": 2024,
-"stok": 5
-}
